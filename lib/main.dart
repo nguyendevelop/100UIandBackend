@@ -83,10 +83,8 @@ class MakePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-//     Dòng double ratingValue = ratingUrl; sẽ gán giá trị của ratingUrl (từ API) cho biến ratingValue. Đây là giá trị đánh giá của sản phẩm.
-// Dòng int numberOfStars = ratingValue.round(); sẽ làm tròn giá trị ratingValue thành một số nguyên và gán cho biến numberOfStars. Biến này sẽ xác định số lượng sao cần hiển thị (số nguyên gần nhất của ratingValue).
-// Dòng List<Widget> stars = List.generate(...); tạo một danh sách các widget Icon. Hàm List.generate tạo ra một danh sách có kích thước 5 (số lượng sao tối đa) và với mỗi vị trí, nó tạo một widget Icon có kiểu sao là Icons.star nếu vị trí nhỏ hơn numberOfStars, ngược lại nếu vị trí lớn hơn hoặc bằng numberOfStars thì sử dụng kiểu sao là Icons.star_border. Màu sắc của sao được đặt thành màu vàng (Colors.yellow), và kích thước của sao là 20.
     double ratingRateValue = ratingRateUrl;
+    //làm tròn giá trị ratingValue thành một số nguyên và gán cho biến numberOfStars
     int numberOfStars = ratingRateValue.round();
 
     int ratingCountValue = ratingCountUrl;
