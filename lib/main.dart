@@ -292,11 +292,6 @@ class ProductProvider with ChangeNotifier {
   int totalIds() {
     return _products.length;
   }
-
-  void toggleDescription() {
-    showFullDescription = !showFullDescription;
-    notifyListeners();
-  }
 }
 
 class TextAnimation extends StatelessWidget {
