@@ -24,8 +24,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Food Delivery App',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(brightness: Brightness.light),
       home: ChangeNotifierProvider(
-        create: (_) => FoodProvider()..fetchFoods(),
+        create: (_) => FoodProvider(),
         child: HomePage(),
       ),
     );
@@ -36,32 +37,37 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final foodProvider = Provider.of<FoodProvider>(context);
+    foodProvider.fetchFoods();
+
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.grey[100],
-        elevation: 0,
-        leading: Icon(null),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.shopping_basket,
-                color: Colors.grey[800],
-              ))
-        ],
+        title: Text('Food Delivery App'),
       ),
-      body: SafeArea(
-        child: PageView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: foodProvider.foods.length,
-          itemBuilder: (context, index) {
-            final food = foodProvider.foods[index];
-            return Column(
-              children: [
-                Text(food.category),
-              ],
-            );
+      body: Center(
+        child: Consumer<FoodProvider>(
+          builder: (_, provider, __) {
+            final foods = provider.foods;
+
+            if (foods.isEmpty) {
+              return CircularProgressIndicator();
+            } else {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: foods.map((food) {
+                  return Column(
+                    children: [
+                      // Image.network(
+                      //   food.image,
+                      //   height: 100,
+                      //   width: 100,
+                      // ),
+                      Text(food.name),
+                      SizedBox(height: 20),
+                    ],
+                  );
+                }).toList(),
+              );
+            }
           },
         ),
       ),
@@ -221,7 +227,7 @@ class _StartButtonState extends State<StartButton>
 
 class Food {
   final String name;
-  final int glass;
+  final String glass;
   final String image;
   final String category;
 
@@ -236,7 +242,7 @@ class Food {
     return Food(
       name: json['strDrink'],
       glass: json['strGlass'],
-      image: json['strImageSource'],
+      image: json['strDrinkThumb'],
       category: json['strCategory'],
     );
   }
@@ -244,17 +250,29 @@ class Food {
 
 class FoodProvider with ChangeNotifier {
   List<Food> _foods = [];
-  List<Food> get foods => _foods;
+  List<Food> get foods => [..._foods];
 
   Future<void> fetchFoods() async {
     final response = await http.get(Uri.parse(
         'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita'));
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body) as List<dynamic>;
-      _foods = jsonData.map((item) => Food.fromJson(item)).toList();
+    try {
+      final jsonData = json.decode(response.body) as Map<String, dynamic>;
+      final List<dynamic> foodData = jsonData['drinks'];
+
+      if (foodData == null) {
+        return;
+      }
+
+      final List<Food> loadedFoods = [];
+      foodData.forEach((element) {
+        final newFood = Food.fromJson(element);
+        loadedFoods.add(newFood);
+      });
+
+      _foods = loadedFoods;
       notifyListeners();
-    } else {
-      throw Exception("Failed to fetch products");
+    } catch (error) {
+      throw (error);
     }
   }
 }
