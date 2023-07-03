@@ -272,8 +272,6 @@ class Product {
 }
 
 class ProductProvider with ChangeNotifier {
-  bool showFullDescription = false;
-
   List<Product> _products = [];
 
   List<Product> get products => _products;
