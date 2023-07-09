@@ -5,8 +5,11 @@
  * @modify date 2023-07-06 21:02:16
  * @desc [E-Commerce App]
  */
+
 import './screens/auth_ui/welcome/welcome.dart';
 import 'package:flutter/material.dart';
+
+import 'constants/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,8 +21,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "E-Commerce App",
+      debugShowMaterialGrid: false,
+      theme: lightTheme,
       home: Welcome(),
     );
   }

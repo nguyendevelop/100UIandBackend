@@ -1,4 +1,5 @@
 import 'package:e_commerce_nd/constants/asset_image.dart';
+import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,7 +10,6 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -35,22 +35,7 @@ class Login extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Column(
-                    children: [
-                      Text(
-                        "Login",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Login to your account",
-                        style: TextStyle(fontSize: 15, color: Colors.grey[700]),
-                      ),
-                    ],
-                  ),
+                  TopTitles(title: "Login", subtitle: "Login to your account"),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
@@ -62,6 +47,31 @@ class Login extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
+                    // child: Container(
+                    //   padding: EdgeInsets.only(top: 3, left: 3),
+                    //   decoration: BoxDecoration(
+                    //       borderRadius: BorderRadius.circular(50),
+                    //       border: Border(
+                    //         bottom: BorderSide(color: Colors.black),
+                    //         top: BorderSide(color: Colors.black),
+                    //         left: BorderSide(color: Colors.black),
+                    //         right: BorderSide(color: Colors.black),
+                    //       )),
+                    //   child: MaterialButton(
+                    //     minWidth: double.infinity,
+                    //     height: 60,
+                    //     onPressed: () {},
+                    //     color: Colors.greenAccent,
+                    //     elevation: 0,
+                    //     shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(50)),
+                    //     child: Text(
+                    //       "Login",
+                    //       style: TextStyle(
+                    //           fontWeight: FontWeight.w600, fontSize: 18),
+                    //     ),
+                    //   ),
+                    // ),
                     child: Container(
                       padding: EdgeInsets.only(top: 3, left: 3),
                       decoration: BoxDecoration(
@@ -72,18 +82,20 @@ class Login extends StatelessWidget {
                             left: BorderSide(color: Colors.black),
                             right: BorderSide(color: Colors.black),
                           )),
-                      child: MaterialButton(
-                        minWidth: double.infinity,
-                        height: 60,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.greenAccent,
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(color: Colors.greenAccent),
+                              borderRadius: BorderRadius.circular(50),
+                            )),
                         onPressed: () {},
-                        color: Colors.greenAccent,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
                         child: Text(
                           "Login",
                           style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 18),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
                     ),
@@ -131,13 +143,13 @@ class Login extends StatelessWidget {
         ),
         TextField(
           obscureText: obscureText,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-            border:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-          ),
+          // decoration: InputDecoration(
+          //   contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+          //   enabledBorder:
+          //       OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+          //   border:
+          //       OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+          // ),
         ),
         SizedBox(
           height: 30,

@@ -1,3 +1,4 @@
+import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,7 +9,6 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -32,21 +32,8 @@ class SignUp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Column(
-                children: [
-                  Text(
-                    "Sign up",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Create an account, It's free",
-                    style: TextStyle(fontSize: 15, color: Colors.grey[700]),
-                  ),
-                ],
-              ),
+              TopTitles(
+                  title: "Sign up", subtitle: "Create an account, It's free"),
               Column(
                 children: [
                   makeInput(label: "Email"),
@@ -64,17 +51,20 @@ class SignUp extends StatelessWidget {
                       left: BorderSide(color: Colors.black),
                       right: BorderSide(color: Colors.black),
                     )),
-                child: MaterialButton(
-                  minWidth: double.infinity,
-                  height: 60,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.greenAccent,
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.greenAccent),
+                        borderRadius: BorderRadius.circular(50),
+                      )),
                   onPressed: () {},
-                  color: Colors.greenAccent,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50)),
                   child: Text(
-                    "Sign up",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                    "Login",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ),
@@ -109,13 +99,13 @@ class SignUp extends StatelessWidget {
         ),
         TextField(
           obscureText: obscureText,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-            border:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-          ),
+          // decoration: InputDecoration(
+          //   contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+          //   enabledBorder:
+          //       OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+          //   border:
+          //       OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+          // ),
         ),
         SizedBox(
           height: 30,

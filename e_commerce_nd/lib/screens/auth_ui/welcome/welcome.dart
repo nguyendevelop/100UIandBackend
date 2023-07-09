@@ -1,7 +1,11 @@
 import 'package:e_commerce_nd/constants/asset_image.dart';
 import 'package:e_commerce_nd/screens/auth_ui/login/login.dart';
 import 'package:e_commerce_nd/screens/auth_ui/sign_up/signup.dart';
+import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../../constants/theme.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
@@ -18,22 +22,8 @@ class Welcome extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Column(
-                children: [
-                  Text(
-                    "Welcome",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Automatic identity verification which enables you to verify your identity",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey[700], fontSize: 15),
-                  ),
-                ],
-              ),
+              TopTitles(
+                  title: "Welcome", subtitle: "Buy any item from using app"),
               Container(
                 height: MediaQuery.of(context).size.height / 3,
                 decoration: BoxDecoration(
@@ -45,20 +35,17 @@ class Welcome extends StatelessWidget {
               ),
               Column(
                 children: [
-                  MaterialButton(
-                    minWidth: double.infinity,
-                    height: 60,
+                  ElevatedButton(
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Login()));
                     },
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black),
-                        borderRadius: BorderRadius.circular(50)),
                     child: Text(
                       "Login",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -74,21 +61,40 @@ class Welcome extends StatelessWidget {
                           left: BorderSide(color: Colors.black),
                           right: BorderSide(color: Colors.black),
                         )),
-                    child: MaterialButton(
-                      minWidth: double.infinity,
-                      height: 60,
+                    // child: MaterialButton(
+                    //   minWidth: double.infinity,
+                    //   height: 60,
+                    //   onPressed: () {
+                    //     Navigator.push(context,
+                    //         MaterialPageRoute(builder: (context) => SignUp()));
+                    //   },
+                    //   color: Colors.yellow,
+                    //   elevation: 0,
+                    //   shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(50)),
+                    //   child: Text(
+                    //     "Sign up",
+                    //     style: TextStyle(
+                    //         fontWeight: FontWeight.w600, fontSize: 18),
+                    //   ),
+                    // ),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.yellow,
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.yellow),
+                            borderRadius: BorderRadius.circular(50),
+                          )),
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => SignUp()));
                       },
-                      color: Colors.yellow,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)),
                       child: Text(
                         "Sign up",
                         style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 18),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
@@ -98,17 +104,29 @@ class Welcome extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.facebook,
-                        size: 35,
-                        color: Colors.blue,
+                      CupertinoButton(
+                        onPressed: () {
+                          print("click facebook icon");
+                        },
+                        padding: EdgeInsets.zero,
+                        child: Icon(
+                          Icons.facebook,
+                          size: 35,
+                          color: Colors.blue,
+                        ),
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      Image.asset(
-                        AssetsImages.instance.googleLogo,
-                        scale: 30.0,
+                      CupertinoButton(
+                        onPressed: () {
+                          print("click google icon");
+                        },
+                        padding: EdgeInsets.zero,
+                        child: Image.asset(
+                          AssetsImages.instance.googleLogo,
+                          scale: 30.0,
+                        ),
                       ),
                     ],
                   ),
