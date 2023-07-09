@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import '../../../constants/routes.dart';
 
 class SignUp extends StatelessWidget {
+  static const routeName = '/signup';
+
   const SignUp({super.key});
 
   @override
@@ -17,7 +19,8 @@ class SignUp extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            // Navigator.pop(context);
+            Routes.instance.pop(context);
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -63,7 +66,7 @@ class SignUp extends StatelessWidget {
                       )),
                   onPressed: () {},
                   child: Text(
-                    "Login",
+                    "Sign Up",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
@@ -78,9 +81,10 @@ class SignUp extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       Routes.instance.pushAndRemoveUntil(
-                          widget: Login(),
-                          context: context,
-                          routeNameToKeep: '/');
+                        widget: Login(),
+                        context: context,
+                        routeNameToKeep: '/',
+                      );
                     },
                     child: Text(
                       " Login",

@@ -6,6 +6,9 @@
  * @desc [E-Commerce App]
  */
 
+import 'package:e_commerce_nd/screens/auth_ui/login/login.dart';
+import 'package:e_commerce_nd/screens/auth_ui/sign_up/signup.dart';
+
 import './screens/auth_ui/welcome/welcome.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +28,13 @@ class MyApp extends StatelessWidget {
       title: "E-Commerce App",
       debugShowMaterialGrid: false,
       theme: lightTheme,
-      home: Welcome(),
+      // home: Welcome(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Welcome(),
+        Login.routeName: (context) => Login(),
+        SignUp.routeName: (context) => SignUp(),
+      },
     );
   }
 }

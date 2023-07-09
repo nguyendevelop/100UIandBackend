@@ -7,6 +7,7 @@ import '../../../constants/routes.dart';
 import '../sign_up/signup.dart';
 
 class Login extends StatelessWidget {
+  static const routeName = '/login';
   const Login({super.key});
 
   @override
@@ -18,7 +19,7 @@ class Login extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Routes.instance.pop(context);
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -110,9 +111,10 @@ class Login extends StatelessWidget {
                       TextButton(
                         onPressed: () {
                           Routes.instance.pushAndRemoveUntil(
-                              widget: const SignUp(),
-                              context: context,
-                              routeNameToKeep: '/welcome');
+                            widget: const SignUp(),
+                            context: context,
+                            routeNameToKeep: '/',
+                          );
                         },
                         child: Text(
                           " Sign up",

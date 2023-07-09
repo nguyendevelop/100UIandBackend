@@ -1,5 +1,3 @@
-import 'package:e_commerce_nd/screens/auth_ui/login/login.dart';
-import 'package:e_commerce_nd/screens/auth_ui/welcome/welcome.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -11,7 +9,7 @@ class Routes {
       String? routeNameToKeep}) {
     return Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (ctx) => widget),
-      ModalRoute.withName('/'),
+      ModalRoute.withName(routeNameToKeep!),
     );
   }
 
