@@ -1,6 +1,9 @@
+import 'package:e_commerce_nd/screens/auth_ui/login/login.dart';
 import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../../constants/routes.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -72,9 +75,18 @@ class SignUp extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Already have an account?"),
-                  Text(
-                    " Login",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                  TextButton(
+                    onPressed: () {
+                      Routes.instance.pushAndRemoveUntil(
+                          widget: Login(),
+                          context: context,
+                          routeNameToKeep: '/');
+                    },
+                    child: Text(
+                      " Login",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                    ),
                   ),
                 ],
               ),

@@ -5,6 +5,7 @@ import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants/routes.dart';
 import '../../../constants/theme.dart';
 
 class Welcome extends StatelessWidget {
@@ -37,8 +38,10 @@ class Welcome extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Login()));
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => Login()));
+                      Routes.instance
+                          .push(widget: const Login(), context: context);
                     },
                     child: Text(
                       "Login",
@@ -86,8 +89,8 @@ class Welcome extends StatelessWidget {
                             borderRadius: BorderRadius.circular(50),
                           )),
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => SignUp()));
+                        Routes.instance
+                            .push(widget: const SignUp(), context: context);
                       },
                       child: Text(
                         "Sign up",

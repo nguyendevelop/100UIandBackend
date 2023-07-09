@@ -3,6 +3,9 @@ import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../constants/routes.dart';
+import '../sign_up/signup.dart';
+
 class Login extends StatelessWidget {
   const Login({super.key});
 
@@ -104,10 +107,18 @@ class Login extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("Don't have an account?"),
-                      Text(
-                        "Sign up",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 18),
+                      TextButton(
+                        onPressed: () {
+                          Routes.instance.pushAndRemoveUntil(
+                              widget: const SignUp(),
+                              context: context,
+                              routeNameToKeep: '/welcome');
+                        },
+                        child: Text(
+                          " Sign up",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 18),
+                        ),
                       ),
                     ],
                   )
