@@ -18,8 +18,4 @@ class Routes {
       MaterialPageRoute(builder: (ctx) => widget),
     );
   }
-
-  void pop(BuildContext context) {
-    Navigator.of(context).pop();
-  }
 }

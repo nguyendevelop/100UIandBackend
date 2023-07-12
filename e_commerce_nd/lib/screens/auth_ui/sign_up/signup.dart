@@ -1,15 +1,27 @@
+import 'package:e_commerce_nd/constants/constants.dart';
 import 'package:e_commerce_nd/screens/auth_ui/login/login.dart';
 import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../constants/routes.dart';
+import '../../../firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
+import '../../home/home.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   static const routeName = '/signup';
 
   const SignUp({super.key});
 
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,8 +31,7 @@ class SignUp extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            // Navigator.pop(context);
-            Routes.instance.pop(context);
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -42,9 +53,27 @@ class SignUp extends StatelessWidget {
                   title: "Sign up", subtitle: "Create an account, It's free"),
               Column(
                 children: [
-                  makeInput(label: "Email"),
-                  makeInput(label: "Password", obscureText: true),
-                  makeInput(label: "Confirm Password", obscureText: true),
+                  makeInput(
+                    controllers: name,
+                    label: "Name",
+                    keyboard: TextInputType.name,
+                  ),
+                  makeInput(
+                    controllers: email,
+                    label: "Email",
+                    keyboard: TextInputType.emailAddress,
+                  ),
+                  makeInput(
+                    controllers: phone,
+                    label: "Phone",
+                    keyboard: TextInputType.phone,
+                  ),
+                  makeInput(
+                    controllers: password,
+                    label: "Password",
+                    obscureText: true,
+                    keyboard: TextInputType.visiblePassword,
+                  ),
                 ],
               ),
               Container(
@@ -64,7 +93,22 @@ class SignUp extends StatelessWidget {
                         side: BorderSide(color: Colors.greenAccent),
                         borderRadius: BorderRadius.circular(50),
                       )),
-                  onPressed: () {},
+                  onPressed: () async {
+                    bool isVaildated = signUpVaildation(
+                      email.text,
+                      password.text,
+                      name.text,
+                      phone.text,
+                    );
+                    if (isVaildated) {
+                      bool isLogined = await FirebaseAuthHelper.instance
+                          .signUp(email.text, password.text, context);
+                      if (isLogined) {
+                        Routes.instance.pushAndRemoveUntil(
+                            widget: const Home(), context: context);
+                      }
+                    }
+                  },
                   child: Text(
                     "Sign Up",
                     style: TextStyle(
@@ -101,7 +145,7 @@ class SignUp extends StatelessWidget {
     );
   }
 
-  Widget makeInput({label, obscureText = false}) {
+  Widget makeInput({controllers, label, obscureText = false, keyboard}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -114,7 +158,9 @@ class SignUp extends StatelessWidget {
           height: 5,
         ),
         TextField(
+          controller: controllers,
           obscureText: obscureText,
+          keyboardType: keyboard,
           // decoration: InputDecoration(
           //   contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
           //   enabledBorder:

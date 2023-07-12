@@ -1,4 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:e_commerce_nd/constants/asset_image.dart';
+import 'package:e_commerce_nd/constants/constants.dart';
+import 'package:e_commerce_nd/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
+import 'package:e_commerce_nd/screens/home/home.dart';
 import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,9 +11,17 @@ import 'package:flutter/services.dart';
 import '../../../constants/routes.dart';
 import '../sign_up/signup.dart';
 
-class Login extends StatelessWidget {
-  static const routeName = '/login';
+class Login extends StatefulWidget {
   const Login({super.key});
+  static const routeName = '/login';
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +32,7 @@ class Login extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Routes.instance.pop(context);
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -44,8 +57,15 @@ class Login extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: [
-                        makeInput(label: "Email"),
-                        makeInput(label: "Password", obscureText: true),
+                        makeInput(
+                            controllers: email,
+                            label: "Email",
+                            keyboard: TextInputType.emailAddress),
+                        makeInput(
+                            controllers: password,
+                            label: "Password",
+                            obscureText: true,
+                            keyboard: TextInputType.visiblePassword),
                       ],
                     ),
                   ),
@@ -93,7 +113,18 @@ class Login extends StatelessWidget {
                               side: BorderSide(color: Colors.greenAccent),
                               borderRadius: BorderRadius.circular(50),
                             )),
-                        onPressed: () {},
+                        onPressed: () async {
+                          bool isVaildated =
+                              loginVaildation(email.text, password.text);
+                          if (isVaildated) {
+                            bool isLogined = await FirebaseAuthHelper.instance
+                                .login(email.text, password.text, context);
+                            if (isLogined) {
+                              Routes.instance.pushAndRemoveUntil(
+                                  widget: const Home(), context: context);
+                            }
+                          }
+                        },
                         child: Text(
                           "Login",
                           style: TextStyle(
@@ -142,7 +173,7 @@ class Login extends StatelessWidget {
     );
   }
 
-  Widget makeInput({label, obscureText = false}) {
+  Widget makeInput({controllers, label, obscureText = false, keyboard}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -155,7 +186,9 @@ class Login extends StatelessWidget {
           height: 5,
         ),
         TextField(
+          controller: controllers,
           obscureText: obscureText,
+          keyboardType: keyboard,
           // decoration: InputDecoration(
           //   contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
           //   enabledBorder:

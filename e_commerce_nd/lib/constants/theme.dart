@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
+  primaryColor: Colors.red,
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       foregroundColor: Colors.black,
