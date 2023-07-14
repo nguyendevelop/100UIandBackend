@@ -114,21 +114,13 @@ packages:
     source: hosted
     version: "5.5.3"
   firebase_core:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_core
       sha256: a4a99204da264a0aa9d54a332ea0315ce7b0768075139c77abefe98093dd98be
       url: "https://pub.dev"
     source: hosted
     version: "2.14.0"
-  firebase_core_dart:
-    dependency: "direct main"
-    description:
-      name: firebase_core_dart
-      sha256: ccb96c29ae686f43ad80f8f0893717361b7959a88b276c5e2c3627d12a9f1de8
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
   firebase_core_platform_interface:
     dependency: transitive
     description:

@@ -1,11 +1,13 @@
 import 'package:e_commerce_nd/constants/constants.dart';
 import 'package:e_commerce_nd/screens/auth_ui/login/login.dart';
 import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../constants/routes.dart';
 import '../../../firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
+import '../../../widgets/input_button/make_input.dart';
 import '../../home/home.dart';
 
 class SignUp extends StatefulWidget {
@@ -22,6 +24,9 @@ class _SignUpState extends State<SignUp> {
   TextEditingController password = TextEditingController();
   TextEditingController name = TextEditingController();
   TextEditingController phone = TextEditingController();
+
+  bool isShowPassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,26 +58,61 @@ class _SignUpState extends State<SignUp> {
                   title: "Sign up", subtitle: "Create an account, It's free"),
               Column(
                 children: [
-                  makeInput(
+                  MakeInput(
                     controllers: name,
-                    label: "Name",
-                    keyboard: TextInputType.name,
+                    labels: "Name",
+                    keyboardTypes: TextInputType.name,
+                    decorations: const InputDecoration(
+                      hintText: "Name",
+                      prefixIcon: Icon(
+                        Icons.person_outline,
+                      ),
+                    ),
                   ),
-                  makeInput(
+                  MakeInput(
                     controllers: email,
-                    label: "Email",
-                    keyboard: TextInputType.emailAddress,
+                    labels: "Email",
+                    keyboardTypes: TextInputType.emailAddress,
+                    decorations: const InputDecoration(
+                      hintText: "E-mail",
+                      prefixIcon: Icon(
+                        Icons.email_outlined,
+                      ),
+                    ),
                   ),
-                  makeInput(
+                  MakeInput(
                     controllers: phone,
-                    label: "Phone",
-                    keyboard: TextInputType.phone,
+                    labels: "Phone",
+                    keyboardTypes: TextInputType.phone,
+                    decorations: const InputDecoration(
+                      hintText: "Phone",
+                      prefixIcon: Icon(
+                        Icons.phone_outlined,
+                      ),
+                    ),
                   ),
-                  makeInput(
+                  MakeInput(
                     controllers: password,
-                    label: "Password",
-                    obscureText: true,
-                    keyboard: TextInputType.visiblePassword,
+                    labels: "Password",
+                    obscureTexts: isShowPassword,
+                    keyboardTypes: TextInputType.visiblePassword,
+                    decorations: InputDecoration(
+                      hintText: "Password",
+                      prefixIcon: const Icon(
+                        Icons.password_sharp,
+                      ),
+                      suffixIcon: CupertinoButton(
+                          onPressed: () {
+                            setState(() {
+                              isShowPassword = !isShowPassword;
+                            });
+                          },
+                          padding: EdgeInsets.zero,
+                          child: const Icon(
+                            Icons.visibility,
+                            color: Colors.grey,
+                          )),
+                    ),
                   ),
                 ],
               ),
@@ -105,7 +145,7 @@ class _SignUpState extends State<SignUp> {
                           .signUp(email.text, password.text, context);
                       if (isLogined) {
                         Routes.instance.pushAndRemoveUntil(
-                            widget: const Home(), context: context);
+                            widget: Home(), context: context);
                       }
                     }
                   },
@@ -145,34 +185,34 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  Widget makeInput({controllers, label, obscureText = false, keyboard}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-              fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TextField(
-          controller: controllers,
-          obscureText: obscureText,
-          keyboardType: keyboard,
-          // decoration: InputDecoration(
-          //   contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-          //   enabledBorder:
-          //       OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-          //   border:
-          //       OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-          // ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-      ],
-    );
-  }
+  // Widget makeInput({controllers, label, obscureText = false, keyboard}) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text(
+  //         label,
+  //         style: TextStyle(
+  //             fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
+  //       ),
+  //       SizedBox(
+  //         height: 5,
+  //       ),
+  //       TextField(
+  //         controller: controllers,
+  //         obscureText: obscureText,
+  //         keyboardType: keyboard,
+  //         // decoration: InputDecoration(
+  //         //   contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+  //         //   enabledBorder:
+  //         //       OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+  //         //   border:
+  //         //       OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+  //         // ),
+  //       ),
+  //       SizedBox(
+  //         height: 30,
+  //       ),
+  //     ],
+  //   );
+  // }
 }

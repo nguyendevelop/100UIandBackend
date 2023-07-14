@@ -19,12 +19,12 @@ import 'constants/theme.dart';
 //#https://stackoverflow.com/questions/63492211/no-firebase-app-default-has-been-created-call-firebase-initializeapp-in
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized;
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -48,9 +48,9 @@ class MyApp extends StatelessWidget {
           stream: FirebaseAuthHelper.instance.getAuthChange,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return const Home();
+              return Home();
             }
-            return const Welcome();
+            return Welcome();
           }),
     );
   }

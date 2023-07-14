@@ -9,7 +9,7 @@ class Routes {
       String? routeNameToKeep}) {
     return Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (ctx) => widget),
-      ModalRoute.withName(routeNameToKeep!),
+      ModalRoute.withName(routeNameToKeep ?? ''),
     );
   }
 

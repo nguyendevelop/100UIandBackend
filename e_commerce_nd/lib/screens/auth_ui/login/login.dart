@@ -5,10 +5,12 @@ import 'package:e_commerce_nd/constants/constants.dart';
 import 'package:e_commerce_nd/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:e_commerce_nd/screens/home/home.dart';
 import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../constants/routes.dart';
+import '../../../widgets/input_button/make_input.dart';
 import '../sign_up/signup.dart';
 
 class Login extends StatefulWidget {
@@ -22,6 +24,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+
+  bool isShowPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -57,15 +61,43 @@ class _LoginState extends State<Login> {
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: [
-                        makeInput(
-                            controllers: email,
-                            label: "Email",
-                            keyboard: TextInputType.emailAddress),
-                        makeInput(
-                            controllers: password,
-                            label: "Password",
-                            obscureText: true,
-                            keyboard: TextInputType.visiblePassword),
+                        MakeInput(
+                          controllers: email,
+                          labels: "Email",
+                          keyboardTypes: TextInputType.emailAddress,
+                          decorations: InputDecoration(
+                            hintText: "E-mail",
+                            prefixIcon: Icon(
+                              Icons.email_outlined,
+                            ),
+                          ),
+                        ),
+                        MakeInput(
+                          controllers: password,
+                          labels: "Password",
+                          obscureTexts: true,
+                          keyboardTypes: TextInputType.visiblePassword,
+                          decorations: InputDecoration(
+                            hintText: "Password",
+                            prefixIcon: const Icon(
+                              Icons.password_sharp,
+                            ),
+                            suffixIcon: CupertinoButton(
+                              onPressed: () {
+                                setState(() {
+                                  isShowPassword = !isShowPassword;
+                                });
+                              },
+                              padding: EdgeInsets.zero,
+                              child: Icon(
+                                isShowPassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -121,7 +153,7 @@ class _LoginState extends State<Login> {
                                 .login(email.text, password.text, context);
                             if (isLogined) {
                               Routes.instance.pushAndRemoveUntil(
-                                  widget: const Home(), context: context);
+                                  widget: Home(), context: context);
                             }
                           }
                         },
@@ -173,34 +205,27 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget makeInput({controllers, label, obscureText = false, keyboard}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-              fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TextField(
-          controller: controllers,
-          obscureText: obscureText,
-          keyboardType: keyboard,
-          // decoration: InputDecoration(
-          //   contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-          //   enabledBorder:
-          //       OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-          //   border:
-          //       OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-          // ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-      ],
-    );
-  }
+  // Widget makeInput({controllers, label, obscureText = false, keyboard}) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text(
+  //         label,
+  //         style: TextStyle(
+  //             fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
+  //       ),
+  //       const SizedBox(
+  //         height: 5,
+  //       ),
+  //       TextField(
+  //         controller: controllers,
+  //         obscureText: obscureText,
+  //         keyboardType: keyboard,
+  //       ),
+  //       const SizedBox(
+  //         height: 30,
+  //       ),
+  //     ],
+  //   );
+  // }
 }
