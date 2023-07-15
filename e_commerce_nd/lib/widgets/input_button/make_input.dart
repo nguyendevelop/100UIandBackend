@@ -10,8 +10,8 @@ class MakeInput extends StatelessWidget {
 
   const MakeInput({
     required this.controllers,
-    this.obscureTexts = false,
     required this.labels,
+    this.obscureTexts = false,
     required this.keyboardTypes,
     required this.decorations,
     this.onChangeds,
@@ -34,7 +34,7 @@ class MakeInput extends StatelessWidget {
         TextFormField(
           controller: controllers,
           obscureText: obscureTexts,
-          onChanged: (value) => onChangeds!,
+          onChanged: onChangeds,
           keyboardType: keyboardTypes,
           decoration: decorations,
         ),

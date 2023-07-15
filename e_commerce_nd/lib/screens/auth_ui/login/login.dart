@@ -75,7 +75,7 @@ class _LoginState extends State<Login> {
                         MakeInput(
                           controllers: password,
                           labels: "Password",
-                          obscureTexts: true,
+                          obscureTexts: isShowPassword,
                           keyboardTypes: TextInputType.visiblePassword,
                           decorations: InputDecoration(
                             hintText: "Password",
