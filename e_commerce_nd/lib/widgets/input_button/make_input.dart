@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MakeInput extends StatelessWidget {
   final TextEditingController controllers;
-  final String labels;
+  final String? labels;
   final bool obscureTexts;
   final TextInputType keyboardTypes;
   final InputDecoration decorations;
@@ -10,7 +10,7 @@ class MakeInput extends StatelessWidget {
 
   const MakeInput({
     required this.controllers,
-    required this.labels,
+    this.labels,
     this.obscureTexts = false,
     required this.keyboardTypes,
     required this.decorations,
@@ -23,7 +23,7 @@ class MakeInput extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          labels,
+          labels ?? '',
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,
