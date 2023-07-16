@@ -8,8 +8,11 @@
 
 import 'package:e_commerce_nd/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:e_commerce_nd/firebase_options.dart';
+import 'package:e_commerce_nd/provider/app_provider.dart';
+import 'package:e_commerce_nd/screens/custom_bottom_bar/custom_bottom_bar.dart';
 import 'package:e_commerce_nd/screens/home/home.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 
 import './screens/auth_ui/welcome/welcome.dart';
 import 'package:flutter/material.dart';
@@ -33,25 +36,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "E-Commerce App",
-      debugShowMaterialGrid: false,
-      theme: lightTheme,
-      // home: Welcome(),
-      // initialRoute: '/',
-      // routes: {
-      //   '/': (context) => Welcome(),
-      //   Login.routeName: (context) => Login(),
-      //   SignUp.routeName: (context) => SignUp(),
-      // },
-      home: StreamBuilder(
-          stream: FirebaseAuthHelper.instance.getAuthChange,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Home();
-            }
-            return Welcome();
-          }),
+    return ChangeNotifierProvider(
+      create: (context) => AppProvider(),
+      child: MaterialApp(
+        title: "E-Commerce App",
+        debugShowCheckedModeBanner: false,
+        theme: lightTheme,
+        // home: Welcome(),
+        // initialRoute: '/',
+        // routes: {
+        //   '/': (context) => Welcome(),
+        //   Login.routeName: (context) => Login(),
+        //   SignUp.routeName: (context) => SignUp(),
+        // },
+        home: StreamBuilder(
+            stream: FirebaseAuthHelper.instance.getAuthChange,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return CustomBottomBar();
+              }
+              return Welcome();
+            }),
+      ),
     );
   }
 }

@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_nd/constants/constants.dart';
+import 'package:e_commerce_nd/models/product_model.dart';
 
 import '../../models/category_model.dart';
 
 class FirebaseFirestoreHelper {
   static FirebaseFirestoreHelper instance = FirebaseFirestoreHelper();
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+
   Future<List<CategoryModel>> getCategories() async {
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
@@ -16,6 +18,46 @@ class FirebaseFirestoreHelper {
           .toList();
 
       return categoriesList;
+    } catch (e) {
+      showMessage(e.toString());
+      return [];
+    }
+  }
+
+  Future<List<ProductModel>> getBestProducts() async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await _firebaseFirestore.collectionGroup("products").get();
+
+      // for (var element in querySnapshot.docs) {
+      //   print(element.data());
+      // }
+      // return [];
+
+      List<ProductModel> productModelList = querySnapshot.docs
+          .map((e) => ProductModel.fromJson(e.data()))
+          .toList();
+      return productModelList;
+    } catch (e) {
+      showMessage(e.toString());
+      return [];
+    }
+  }
+
+  Future<List<ProductModel>> getCategoryViewProduct(String id) async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await _firebaseFirestore
+              .collection("categories")
+              .doc(id)
+              .collection("products")
+              .get();
+
+      List<ProductModel> productModelList = querySnapshot.docs
+          .map((e) => ProductModel.fromJson(e.data()))
+          .toList();
+
+      return productModelList;
     } catch (e) {
       showMessage(e.toString());
       return [];
