@@ -1,3 +1,4 @@
+import 'package:e_commerce_nd/screens/account_screen/account_screen.dart';
 import 'package:e_commerce_nd/screens/cart_screen/cart_screen.dart';
 import 'package:e_commerce_nd/screens/favorite_screen/favorite_screen.dart';
 import 'package:e_commerce_nd/screens/home/home.dart';
@@ -19,7 +20,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
         Home(),
         CartScreen(),
         FavoriteScreen(),
-        FavoriteScreen(),
+        AccountScreen(),
       ];
 
   List<PersistentBottomNavBarItem> _navBarsItems() => [

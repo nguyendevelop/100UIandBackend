@@ -34,4 +34,6 @@ class AppProvider with ChangeNotifier {
   }
 
   List<ProductModel> get getFavoriteProductList => _favoriteProductList;
+
+  //$$$$$$$$$$Acount here
 }

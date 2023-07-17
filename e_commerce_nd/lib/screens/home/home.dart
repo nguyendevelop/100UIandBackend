@@ -42,9 +42,11 @@ class _HomeState extends State<Home> {
     productModelList = await FirebaseFirestoreHelper.instance.getBestProducts();
     productModelList.shuffle();
 
+    // if (mounted) {
     setState(() {
       isLoading = false;
     });
+    // }
   }
 
   void searchProducts(String value) {

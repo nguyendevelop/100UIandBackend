@@ -141,8 +141,8 @@ class _SignUpState extends State<SignUp> {
                       phone.text,
                     );
                     if (isVaildated) {
-                      bool isLogined = await FirebaseAuthHelper.instance
-                          .signUp(email.text, password.text, context);
+                      bool isLogined = await FirebaseAuthHelper.instance.signUp(
+                          name.text, email.text, password.text, context);
                       if (isLogined) {
                         Routes.instance.pushAndRemoveUntil(
                             widget: Home(), context: context);
