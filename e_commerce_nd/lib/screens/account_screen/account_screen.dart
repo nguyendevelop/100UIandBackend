@@ -1,5 +1,7 @@
 import 'package:e_commerce_nd/screens/about_screen/about_us_screen.dart';
+import 'package:e_commerce_nd/screens/account_screen/edit_profile_screen.dart';
 import 'package:e_commerce_nd/screens/favorite_screen/favorite_screen.dart';
+import 'package:e_commerce_nd/widgets/input_button/make_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -59,16 +61,23 @@ class _AccountScreenState extends State<AccountScreen> {
                 const SizedBox(
                   height: 12.0,
                 ),
-                // SizedBox(
-                //   width: 130,
-                //   child: PrimaryButton(
-                //     title: "Edit Profile",
-                //     onPressed: () {
-                //       Routes.instance
-                //           .push(widget: const EditProfile(), context: context);
-                //     },
-                //   ),
-                // )
+                SizedBox(
+                  height: 1,
+                  width: 4,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.yellow,
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.yellow),
+                          borderRadius: BorderRadius.circular(50),
+                        )),
+                    onPressed: () {
+                      Routes.instance.push(
+                          widget: const EditProfileScreen(), context: context);
+                    },
+                    child: Text("Edit Profile"),
+                  ),
+                ),
               ],
             ),
           ),
