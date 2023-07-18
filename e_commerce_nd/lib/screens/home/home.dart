@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_nd/firebase_helper/firebase_firestore_helper/firebase_firestore_helper.dart';
+import 'package:e_commerce_nd/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants/routes.dart';
 import '../../models/category_model.dart';
@@ -22,12 +24,15 @@ class _HomeState extends State<Home> {
   TextEditingController search = TextEditingController();
   List<CategoryModel> categoriesList = [];
   List<ProductModel> productModelList = [];
-  List<ProductModel> searchList = [];
+  // List<ProductModel> searchList = [];
 
   bool isLoading = false;
 
   @override
   void initState() {
+    AppProvider appProvider = Provider.of<AppProvider>(context, listen: false);
+    appProvider.getUserInfoFirebase();
+
     getCategoryList();
 
     super.initState();
@@ -42,20 +47,20 @@ class _HomeState extends State<Home> {
     productModelList = await FirebaseFirestoreHelper.instance.getBestProducts();
     productModelList.shuffle();
 
-    // if (mounted) {
-    setState(() {
-      isLoading = false;
-    });
-    // }
+    if (mounted) {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
-  void searchProducts(String value) {
-    searchList = productModelList
-        .where((element) =>
-            element.name.toLowerCase().contains(value.toLowerCase()))
-        .toList();
-    setState(() {});
-  }
+  // void searchProducts(String value) {
+  //   searchList = productModelList
+  //       .where((element) =>
+  //           element.name.toLowerCase().contains(value.toLowerCase()))
+  //       .toList();
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {

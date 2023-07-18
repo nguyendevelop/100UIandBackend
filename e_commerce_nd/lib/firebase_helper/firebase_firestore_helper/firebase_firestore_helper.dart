@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_nd/constants/constants.dart';
 import 'package:e_commerce_nd/models/product_model.dart';
+import 'package:e_commerce_nd/models/user_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../models/category_model.dart';
 
@@ -44,6 +46,7 @@ class FirebaseFirestoreHelper {
     }
   }
 
+  //
   Future<List<ProductModel>> getCategoryViewProduct(String id) async {
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
@@ -62,5 +65,15 @@ class FirebaseFirestoreHelper {
       showMessage(e.toString());
       return [];
     }
+  }
+
+  Future<UserModel> getUserInformation() async {
+    DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+        await _firebaseFirestore
+            .collection("users")
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .get();
+
+    return UserModel.fromJson(querySnapshot.data()!);
   }
 }

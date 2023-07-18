@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 
 import '../../../constants/routes.dart';
 import '../../../widgets/input_button/make_input.dart';
+import '../../custom_bottom_bar/custom_bottom_bar.dart';
 import '../sign_up/signup.dart';
 
 class Login extends StatefulWidget {
@@ -153,7 +154,7 @@ class _LoginState extends State<Login> {
                                 .login(email.text, password.text, context);
                             if (isLogined) {
                               Routes.instance.pushAndRemoveUntil(
-                                  widget: Home(), context: context);
+                                  widget: CustomBottomBar(), context: context);
                             }
                           }
                         },

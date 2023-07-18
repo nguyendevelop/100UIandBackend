@@ -20,8 +20,8 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         id: json["id"],
         image: json["image"],
-        name: json["name"],
         email: json["email"],
+        name: json["name"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -30,4 +30,11 @@ class UserModel {
         "name": name,
         "email": email,
       };
+
+  UserModel copyWith({String? name, image}) => UserModel(
+        id: id,
+        name: name ?? this.name,
+        email: email,
+        image: image ?? this.image,
+      );
 }

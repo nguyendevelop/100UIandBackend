@@ -1,5 +1,6 @@
 import 'package:e_commerce_nd/constants/constants.dart';
 import 'package:e_commerce_nd/screens/auth_ui/login/login.dart';
+import 'package:e_commerce_nd/screens/custom_bottom_bar/custom_bottom_bar.dart';
 import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +146,7 @@ class _SignUpState extends State<SignUp> {
                           name.text, email.text, password.text, context);
                       if (isLogined) {
                         Routes.instance.pushAndRemoveUntil(
-                            widget: Home(), context: context);
+                            widget: CustomBottomBar(), context: context);
                       }
                     }
                   },

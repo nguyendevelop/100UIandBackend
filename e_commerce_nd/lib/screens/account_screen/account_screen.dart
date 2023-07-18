@@ -35,30 +35,30 @@ class _AccountScreenState extends State<AccountScreen> {
           Expanded(
             child: Column(
               children: [
-                // appProvider.getUserInformation.image == null
-                //     ? const Icon(
-                //         Icons.person_outline,
-                //         size: 120,
-                //       )
-                //     : CircleAvatar(
-                //         backgroundImage:
-                //             NetworkImage(appProvider.getUserInformation.image!),
-                //         radius: 60,
-                //       ),
+                appProvider.getUserInformation.image == null
+                    ? const Icon(
+                        Icons.person_outline,
+                        size: 120,
+                      )
+                    : CircleAvatar(
+                        backgroundImage:
+                            NetworkImage(appProvider.getUserInformation.image!),
+                        radius: 60,
+                      ),
                 Text("image profile"),
-                // Text(
-                //   appProvider.getUserInformation.name,
-                //   style: const TextStyle(
-                //     fontSize: 22,
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
-                // Text(
-                //   appProvider.getUserInformation.email,
-                // ),
-                // const SizedBox(
-                //   height: 12.0,
-                // ),
+                Text(
+                  appProvider.getUserInformation.name,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  appProvider.getUserInformation.email,
+                ),
+                const SizedBox(
+                  height: 12.0,
+                ),
                 // SizedBox(
                 //   width: 130,
                 //   child: PrimaryButton(
@@ -122,6 +122,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 ListTile(
                   onTap: () {
                     //
+                    print("deleted account");
                   },
                   leading: const Icon(Icons.delete_sweep_outlined),
                   title: const Text("Detele account"),
