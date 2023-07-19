@@ -50,7 +50,7 @@ class FirebaseAuthHelper {
   }
 
   void signOut() async {
-    await _auth.signOut;
+    await _auth.signOut();
     print("out account");
   }
 }

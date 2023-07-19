@@ -144,7 +144,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   onTap: () {
                     FirebaseAuthHelper.instance.signOut();
 
-                    // setState(() {});
+                    setState(() {});
                   },
                   leading: const Icon(Icons.exit_to_app),
                   title: const Text("Log out"),
