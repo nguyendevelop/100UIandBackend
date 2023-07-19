@@ -9,6 +9,7 @@ import '../../constants/routes.dart';
 import '../../firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import '../../provider/app_provider.dart';
 import '../auth_ui/change_password/change_password.dart';
+import '../order_screen/order_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -91,8 +92,8 @@ class _AccountScreenState extends State<AccountScreen> {
               children: [
                 ListTile(
                   onTap: () {
-                    // Routes.instance
-                    //     .push(widget: const OrderScreen(), context: context);
+                    Routes.instance
+                        .push(widget: const OrderScreen(), context: context);
                   },
                   leading: const Icon(Icons.shopping_bag_outlined),
                   title: const Text("Your Orders"),
@@ -110,7 +111,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     showDialog(
                       context: context,
                       builder: (ctx) => AlertDialog(
-                        title: const Text('AlertDialog Title'),
+                        title: const Text('Alpha Version'),
                         content: const Text('Product by Nguyen Develop'),
                         actions: [
                           TextButton(
@@ -149,10 +150,6 @@ class _AccountScreenState extends State<AccountScreen> {
                   leading: const Icon(Icons.exit_to_app),
                   title: const Text("Log out"),
                 ),
-                const SizedBox(
-                  height: 12.0,
-                ),
-                const Text("Alpha Version")
               ],
             ),
           ),
