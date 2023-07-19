@@ -1,10 +1,14 @@
 import 'dart:io';
 
+import 'package:e_commerce_nd/constants/constants.dart';
+import 'package:e_commerce_nd/firebase_helper/firebase_firestore_helper/firebase_firestore_helper.dart';
+import 'package:e_commerce_nd/widgets/input_button/make_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
+import '../../firebase_helper/firebase_firestorage_helper/firebase_firestorage_helper.dart';
 import '../../models/user_model.dart';
 import '../../provider/app_provider.dart';
 
@@ -27,7 +31,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
-  TextEditingController textEditingController = TextEditingController();
+  TextEditingController changeName = TextEditingController();
   @override
   Widget build(BuildContext context) {
     AppProvider appProvider = Provider.of<AppProvider>(context);
@@ -65,6 +69,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           image == null
               ? CupertinoButton(
                   onPressed: () {
+                    print("object1");
                     takePicture();
                   },
                   child: const CircleAvatar(
@@ -72,6 +77,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 )
               : CupertinoButton(
                   onPressed: () {
+                    print("object2");
+
                     takePicture();
                   },
                   child: CircleAvatar(
@@ -82,9 +89,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           const SizedBox(
             height: 12.0,
           ),
-          TextFormField(
-            controller: textEditingController,
-            decoration: InputDecoration(
+          MakeInput(
+            controllers: changeName,
+            keyboardTypes: TextInputType.name,
+            decorations: InputDecoration(
               hintText: appProvider.getUserInformation.name,
             ),
           ),
@@ -92,10 +100,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             height: 24.0,
           ),
           ElevatedButton(
-            onPressed: () {
-              // UserModel userModel = appProvider.getUserInformation
-              //     .copyWith(name: textEditingController.text);
-              // appProvider.updateUserInfoFirebase(context, userModel, image);
+            // onPressed: () async {
+            //   String imageUrl =
+            //       await FirebaseStorageHelper.instance.uploadUserImage(image!);
+            //   print("update click");
+            //   print(imageUrl);
+            // },
+            onPressed: () async {
+              UserModel userModel = appProvider.getUserInformation
+                  .copyWith(name: changeName.text);
+              appProvider.updateUserInfoFirebase(context, userModel, image);
             },
             child: Text(
               "Update",
