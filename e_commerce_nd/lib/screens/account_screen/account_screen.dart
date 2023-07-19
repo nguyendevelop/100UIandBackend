@@ -23,18 +23,13 @@ class _AccountScreenState extends State<AccountScreen> {
     AppProvider appProvider = Provider.of<AppProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Text(
-          "Account",
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-      ),
       body: Column(
         children: [
-          Expanded(
+          const SizedBox(
+            height: 20.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
                 appProvider.getUserInformation.image == null
@@ -59,16 +54,25 @@ class _AccountScreenState extends State<AccountScreen> {
                   appProvider.getUserInformation.email,
                 ),
                 const SizedBox(
-                  height: 12.0,
+                  height: 22.0,
                 ),
-                SizedBox(
-                  height: 1,
-                  width: 4,
+                Container(
+                  height: 50,
+                  width: 130,
+                  padding: EdgeInsets.only(top: 3, left: 3),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border(
+                        bottom: BorderSide(color: Colors.black),
+                        top: BorderSide(color: Colors.black),
+                        left: BorderSide(color: Colors.black),
+                        right: BorderSide(color: Colors.black),
+                      )),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.yellow,
+                        backgroundColor: Colors.greenAccent,
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.yellow),
+                          side: BorderSide(color: Colors.greenAccent),
                           borderRadius: BorderRadius.circular(50),
                         )),
                     onPressed: () {

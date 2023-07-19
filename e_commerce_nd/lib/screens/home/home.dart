@@ -209,10 +209,34 @@ class _HomeState extends State<Home> {
                                       const SizedBox(
                                         height: 30.0,
                                       ),
-                                      SizedBox(
-                                        height: 45,
-                                        width: 140,
-                                        child: OutlinedButton(
+                                      Container(
+                                        height: 40,
+                                        width: 130,
+                                        padding:
+                                            EdgeInsets.only(top: 3, left: 3),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                  color: Colors.black),
+                                              top: BorderSide(
+                                                  color: Colors.black),
+                                              left: BorderSide(
+                                                  color: Colors.black),
+                                              right: BorderSide(
+                                                  color: Colors.black),
+                                            )),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  Colors.greenAccent,
+                                              shape: RoundedRectangleBorder(
+                                                side: BorderSide(
+                                                    color: Colors.greenAccent),
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                              )),
                                           onPressed: () {
                                             // Routes.instance.push(
                                             //     widget: ProductDetails(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
-  primaryColor: Colors.red,
+  primaryColor: Colors.blue,
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       foregroundColor: Colors.black,
@@ -30,8 +30,8 @@ ThemeData lightTheme = ThemeData(
   //     color: Colors.black,
   //   ),
   // ),
-  canvasColor: Colors.red,
-  primarySwatch: Colors.red,
+  canvasColor: Colors.blue,
+  primarySwatch: Colors.blue,
 );
 
 OutlineInputBorder outlineInputBorder = const OutlineInputBorder(
