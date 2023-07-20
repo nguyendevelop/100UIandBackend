@@ -13,7 +13,7 @@ class FavoriteScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Colo,
+        backgroundColor: Colors.white,
         title: const Text(
           "Favorite Screen",
           style: TextStyle(

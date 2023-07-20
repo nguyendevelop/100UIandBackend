@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../constants/routes.dart';
-import '../../../firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
+import '../../../helper/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import '../../../widgets/input_button/make_input.dart';
 import '../../home/home.dart';
 
@@ -103,16 +103,19 @@ class _SignUpState extends State<SignUp> {
                         Icons.password_sharp,
                       ),
                       suffixIcon: CupertinoButton(
-                          onPressed: () {
-                            setState(() {
-                              isShowPassword = !isShowPassword;
-                            });
-                          },
-                          padding: EdgeInsets.zero,
-                          child: const Icon(
-                            Icons.visibility,
-                            color: Colors.grey,
-                          )),
+                        onPressed: () {
+                          setState(() {
+                            isShowPassword = !isShowPassword;
+                          });
+                        },
+                        padding: EdgeInsets.zero,
+                        child: Icon(
+                          isShowPassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.grey,
+                        ),
+                      ),
                     ),
                   ),
                 ],

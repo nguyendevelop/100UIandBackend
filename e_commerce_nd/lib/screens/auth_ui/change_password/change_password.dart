@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
-import '../../../firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
+import '../../../helper/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});

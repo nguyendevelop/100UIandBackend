@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:e_commerce_nd/constants/constants.dart';
-import 'package:e_commerce_nd/firebase_helper/firebase_firestore_helper/firebase_firestore_helper.dart';
+import 'package:e_commerce_nd/helper/firebase_helper/firebase_firestore_helper/firebase_firestore_helper.dart';
 import 'package:e_commerce_nd/widgets/input_button/make_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-import '../../firebase_helper/firebase_firestorage_helper/firebase_firestorage_helper.dart';
+import '../../helper/firebase_helper/firebase_firestorage_helper/firebase_firestorage_helper.dart';
 import '../../models/user_model.dart';
 import '../../provider/app_provider.dart';
 

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/routes.dart';
-import '../../firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
+import '../../helper/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import '../../provider/app_provider.dart';
 import '../auth_ui/change_password/change_password.dart';
 import '../order_screen/order_screen.dart';
@@ -43,7 +43,6 @@ class _AccountScreenState extends State<AccountScreen> {
                             NetworkImage(appProvider.getUserInformation.image!),
                         radius: 60,
                       ),
-                Text("image profile"),
                 Text(
                   appProvider.getUserInformation.name,
                   style: const TextStyle(

@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../../constants/constants.dart';
 import '../../constants/routes.dart';
+import '../cart_screen/cart_checkout.dart';
 
 class ProductDetails extends StatefulWidget {
   final ProductModel singleProduct;
@@ -162,11 +163,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                     width: 140,
                     child: ElevatedButton(
                       onPressed: () {
-                        // ProductModel productModel =
-                        //     widget.singleProduct.copyWith(qty: qty);
-                        // Routes.instance.push(
-                        //     widget: Checkout(singleProduct: productModel),
-                        //     context: context);
+                        ProductModel productModel =
+                            widget.singleProduct.copyWith(qty: qty);
+                        Routes.instance.push(
+                          widget: CartCheckout(
+                            singleProduct: productModel,
+                          ),
+                          context: context,
+                        );
                       },
                       child: const Text("BUY"),
                     ),

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_commerce_nd/firebase_helper/firebase_firestore_helper/firebase_firestore_helper.dart';
+import 'package:e_commerce_nd/helper/firebase_helper/firebase_firestore_helper/firebase_firestore_helper.dart';
 import 'package:e_commerce_nd/provider/app_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -83,10 +83,13 @@ class _HomeState extends State<Home> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(
+                          height: 18.0,
+                        ),
                         TopTitles(title: "E Commerce", subtitle: ""),
                         MakeInput(
                           controllers: search,
-                          // labels: "Search hera",
+                          labels: "Search here",
                           keyboardTypes: TextInputType.text,
                           decorations:
                               const InputDecoration(hintText: "Search...."),
@@ -238,14 +241,14 @@ class _HomeState extends State<Home> {
                                                     BorderRadius.circular(50),
                                               )),
                                           onPressed: () {
-                                            // Routes.instance.push(
-                                            //     widget: ProductDetails(
-                                            //         singleProduct:
-                                            //             singleProduct),
-                                            //     context: context);
+                                            Routes.instance.push(
+                                                widget: ProductDetails(
+                                                    singleProduct:
+                                                        singleProduct),
+                                                context: context);
                                           },
                                           child: const Text(
-                                            "Buy",
+                                            "Detail",
                                           ),
                                         ),
                                       ),

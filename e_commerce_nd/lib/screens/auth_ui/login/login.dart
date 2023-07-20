@@ -2,7 +2,7 @@
 
 import 'package:e_commerce_nd/constants/asset_image.dart';
 import 'package:e_commerce_nd/constants/constants.dart';
-import 'package:e_commerce_nd/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
+import 'package:e_commerce_nd/helper/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:e_commerce_nd/screens/home/home.dart';
 import 'package:e_commerce_nd/widgets/top_titles/top_titles.dart';
 import 'package:flutter/cupertino.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/routes.dart';
-import '../../firebase_helper/firebase_firestore_helper/firebase_firestore_helper.dart';
+import '../../helper/firebase_helper/firebase_firestore_helper/firebase_firestore_helper.dart';
 import '../../models/category_model.dart';
 import '../../models/product_model.dart';
 import '../product_details/product_details.dart';
