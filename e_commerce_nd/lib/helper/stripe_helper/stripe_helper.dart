@@ -17,6 +17,7 @@ class StripeHelper {
   Map<String, dynamic>? paymentIntent;
   Future<void> makePayment(String amount, BuildContext context) async {
     try {
+      print("object of createPaymentIntent");
       paymentIntent = await createPaymentIntent(amount, 'USD');
 
       var gpay = const PaymentSheetGooglePay(

@@ -28,7 +28,7 @@ class _CartItemCheckoutState extends State<CartItemCheckout> {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
-          "CartItemCheckout",
+          "Choose Payment",
           style: TextStyle(
             color: Colors.black,
           ),
@@ -94,7 +94,7 @@ class _CartItemCheckoutState extends State<CartItemCheckout> {
                       });
                     },
                   ),
-                  const Icon(Icons.money),
+                  const Icon(Icons.payment),
                   const SizedBox(
                     width: 12.0,
                   ),
@@ -128,6 +128,7 @@ class _CartItemCheckoutState extends State<CartItemCheckout> {
                     });
                   }
                 } else {
+                  print("object of cart_item_chectout of else elevatedbutton");
                   int value = double.parse(
                           appProvider.totalPriceBuyProductList().toString())
                       .round()

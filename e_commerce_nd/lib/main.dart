@@ -6,6 +6,7 @@
  * @desc [E-Commerce App]
  */
 
+import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:e_commerce_nd/helper/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:e_commerce_nd/firebase_options.dart';
 import 'package:e_commerce_nd/provider/app_provider.dart';
@@ -58,7 +59,22 @@ class MyApp extends StatelessWidget {
               if (snapshot.hasData) {
                 return CustomBottomBar();
               }
-              return Welcome();
+              return FlutterSplashScreen.gif(
+                gifPath: 'assets/icons/example.gif',
+                gifWidth: 269,
+                gifHeight: 474,
+                defaultNextScreen: const Welcome(),
+                duration: const Duration(milliseconds: 3515),
+                onInit: () async {
+                  debugPrint("onInit 1");
+                  await Future.delayed(const Duration(milliseconds: 2000));
+                  debugPrint("onInit 2");
+                },
+                onEnd: () async {
+                  debugPrint("onEnd 1");
+                  debugPrint("onEnd 2");
+                },
+              );
             }),
       ),
     );
