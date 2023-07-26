@@ -25,13 +25,30 @@ class _CartCheckoutState extends State<CartCheckout> {
     );
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text(
-          "Checkout",
-          style: TextStyle(
+        title: Text(
+          "Check out",
+          style: const TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
+        ),
+        leading: Row(
+          children: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                size: 20,
+                color: Colors.black,
+              ),
+            ),
+          ],
         ),
       ),
       body: Padding(
